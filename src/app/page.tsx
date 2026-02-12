@@ -371,7 +371,7 @@ const CARD_REVEAL = {
     y: 0,
     rotate: 0,
     scale: 1,
-    transition: { duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.65, delay: i * 0.08, ease: "easeOut" },
   }),
 };
 
@@ -389,7 +389,7 @@ const SKILL_REVEAL = {
     y: 0,
     rotate: 0,
     scale: 1,
-    transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, delay: i * 0.08, ease: "easeOut" },
   }),
 };
 
@@ -407,7 +407,7 @@ const ABOUT_REVEAL = {
     y: 0,
     rotate: 0,
     scale: 1,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" },
   }),
 };
 
@@ -425,7 +425,7 @@ const CONTACT_REVEAL = {
     y: 0,
     rotate: 0,
     scale: 1,
-    transition: { duration: 0.65, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.65, delay: i * 0.12, ease: "easeOut" },
   }),
 };
 
@@ -443,7 +443,7 @@ const ITEM_REVEAL = {
     y: 0,
     rotate: 0,
     scale: 1,
-    transition: { duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" },
   }),
 };
 
