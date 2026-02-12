@@ -51,6 +51,50 @@ body::-webkit-scrollbar {
   height: 0;
 }
 
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a,
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select {
+    cursor: none;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+  transform: translate3d(var(--cursor-x, 0), var(--cursor-y, 0), 0) translate(-50%, -50%)
+    scale(var(--cursor-scale, 1));
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.custom-cursor.is-hovering {
+  --cursor-scale: 1.15;
+  filter: drop-shadow(0 10px 22px rgba(124, 58, 237, 0.45));
+}
+
+.custom-cursor.is-pressed {
+  --cursor-scale: 0.92;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
 a {
   text-decoration: none;
 }

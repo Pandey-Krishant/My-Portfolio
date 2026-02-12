@@ -3,6 +3,7 @@
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
+import { CustomCursor } from "./CustomCursor";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -16,6 +17,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         exit={{ opacity: 0, y: -10, filter: "blur(10px)" }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
+        <CustomCursor />
         {children}
       </motion.div>
     </AnimatePresence>
