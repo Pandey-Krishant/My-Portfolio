@@ -355,7 +355,7 @@ const SECTION_REVEAL = {
 };
 
 const SECTION_VIEWPORT = { amount: 0.16, once: false };
-const SECTION_TRANSITION = { duration: 0.7, ease: [0.22, 1, 0.36, 1] };
+const SECTION_TRANSITION = { duration: 0.7 };
 
 const CARD_REVEAL = {
   hidden: (i: number) => ({
