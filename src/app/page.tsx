@@ -465,7 +465,9 @@ const NAV_BG_ICONS = [
   { icon: Globe, className: "left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2" },
 ];
 
-const VISIBILITY_CLASS = {
+type VisibilityKey = "base" | "sm" | "md";
+
+const VISIBILITY_CLASS: Record<VisibilityKey, string> = {
   base: "",
   sm: "hidden sm:block",
   md: "hidden md:block",
@@ -479,7 +481,14 @@ const CONTACT_BG_ICONS = [
   { icon: Globe, className: "left-1/2 bottom-6 h-8 w-8 -translate-x-1/2", floatClass: "float-slow" },
 ];
 
-const MAIN_BG_ICONS = [
+type MainBgIcon = {
+  icon: IconType;
+  className: string;
+  floatClass: string;
+  minScreen?: VisibilityKey;
+};
+
+const MAIN_BG_ICONS: MainBgIcon[] = [
   { icon: Code2, className: "left-[2%] top-[6%] h-10 w-10", floatClass: "float-slow", minScreen: "base" },
   { icon: Shield, className: "right-[3%] top-[8%] h-9 w-9", floatClass: "float-slower", minScreen: "base" },
   { icon: Github, className: "left-[5%] top-[18%] h-9 w-9", floatClass: "float-slow", minScreen: "sm" },
