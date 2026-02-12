@@ -3,11 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --muted: #71717a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,11 +18,192 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --muted: #a1a1aa;
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--foreground) 12%, transparent);
+}
+
 body {
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: geometricPrecision;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.noise {
+  position: relative;
+}
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.06;
+}
+
+.glass {
+  background: color-mix(in oklab, var(--background) 82%, transparent);
+  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.glass-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--background) 82%, #7c3aed 18%),
+    color-mix(in oklab, var(--background) 78%, #06b6d4 22%) 45%,
+    color-mix(in oklab, var(--background) 82%, #22c55e 18%)
+  );
+}
+
+.grid-fade {
+  background-image:
+    radial-gradient(
+      circle at 20% 10%,
+      color-mix(in oklab, #7c3aed 22%, transparent),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      color-mix(in oklab, #22c55e 16%, transparent),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 30% 90%,
+      color-mix(in oklab, #06b6d4 16%, transparent),
+      transparent 50%
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--background) 94%, #7c3aed 6%),
+      var(--background)
+    );
+  background-size: 100% 100%;
+}
+
+.hairline {
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+}
+
+/* Landing page animated background */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+    opacity: 0.6;
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+@keyframes float-orb-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-40px, -30px) scale(1.15);
+  }
+}
+
+.landing-bg {
+  background: linear-gradient(
+    -45deg,
+    #0f0f23,
+    #1a0a2e,
+    #0d1b2a,
+    #1b263b,
+    #16213e
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 12s ease infinite;
+}
+
+.nav-transparent {
+  background: color-mix(in oklab, var(--background) 65%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+.nav-gradient {
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--background) 55%, #7c3aed 45%),
+    color-mix(in oklab, var(--background) 60%, #06b6d4 40%) 45%,
+    color-mix(in oklab, var(--background) 55%, #22c55e 45%)
+  );
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes float-slower {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+
+.float-slow {
+  animation: float-slow 10s ease-in-out infinite;
+}
+
+.float-slower {
+  animation: float-slower 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-slow,
+  .float-slower {
+    animation: none;
+  }
 }
