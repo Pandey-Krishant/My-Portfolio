@@ -319,11 +319,13 @@ function Anchor({
   children,
   className,
   onClick,
+  download,
 }: {
   href: string;
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  download?: boolean;
 }) {
   const isExternal = href.startsWith("http");
   return (
@@ -333,6 +335,7 @@ function Anchor({
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
       onClick={onClick}
+      download={download}
     >
       {children}
     </a>
