@@ -98,6 +98,28 @@ function GradientStrokeIcon({
 }
 
 function LandingScreen({ onEnter }: { onEnter: () => void }) {
+  const fullName = "Krishant Pandey";
+  const [typedName, setTypedName] = React.useState("");
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  React.useEffect(() => {
+    let timeoutId: number;
+    const speed = isDeleting ? 55 : 90;
+
+    if (!isDeleting && typedName === fullName) {
+      timeoutId = window.setTimeout(() => setIsDeleting(true), 900);
+    } else if (isDeleting && typedName.length === 0) {
+      timeoutId = window.setTimeout(() => setIsDeleting(false), 300);
+    } else {
+      timeoutId = window.setTimeout(() => {
+        const nextLength = typedName.length + (isDeleting ? -1 : 1);
+        setTypedName(fullName.slice(0, Math.max(0, nextLength)));
+      }, speed);
+    }
+
+    return () => window.clearTimeout(timeoutId);
+  }, [typedName, isDeleting, fullName]);
+
   return (
     <motion.div
       className="landing-bg fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden"
@@ -226,7 +248,8 @@ function LandingScreen({ onEnter }: { onEnter: () => void }) {
           animate={{ opacity: 1, y: 0, scale: [1, 1.02, 1], rotate: [0, 0.5, -0.5, 0] }}
           transition={{ delay: 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          Krishant Pandey
+          <span>{typedName}</span>
+          <span className="ml-1 animate-pulse">|</span>
         </motion.h1>
         <motion.p
           className="mt-3 max-w-sm text-lg text-white/85 sm:text-xl"
