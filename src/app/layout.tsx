@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "Krishant — Web Developer & Cybersecurity",
   description:
     "Award-style portfolio of Krishant: web developer and cybersecurity enthusiast. Projects, skills, and contact.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#7c3aed",
 };
 
 export default function RootLayout({
